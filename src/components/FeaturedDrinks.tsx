@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import caramelImg from "@/assets/caramel-frappuccino.png";
+import mochaImg from "@/assets/mocha-frappuccino.png";
+import vanillaImg from "@/assets/vanilla-frappuccino.png";
 
 const drinks = [
   {
@@ -8,18 +11,21 @@ const drinks = [
     description: "Buttery caramel syrup blended with coffee and ice",
     rating: 4.8,
     price: "$5.45",
+    image: caramelImg,
   },
   {
     name: "Mocha Frappuccino",
     description: "Rich chocolate and coffee blended to perfection",
     rating: 4.9,
     price: "$5.25",
+    image: mochaImg,
   },
   {
     name: "Vanilla Bean",
     description: "Creamy vanilla blended with ice and topped with whipped cream",
     rating: 4.7,
     price: "$4.95",
+    image: vanillaImg,
   },
 ];
 
@@ -52,16 +58,14 @@ const FeaturedDrinks = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-border group">
-                <div className="h-64 bg-gradient-warm relative overflow-hidden">
-                  <motion.div
+                <div className="h-80 bg-gradient-warm relative overflow-hidden flex items-center justify-center p-8">
+                  <motion.img
+                    src={drink.image}
+                    alt={drink.name}
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full h-full bg-primary/5 flex items-center justify-center"
-                  >
-                    <div className="text-8xl opacity-20 group-hover:opacity-30 transition-opacity">
-                      ☕
-                    </div>
-                  </motion.div>
+                    className="w-full h-full object-contain drop-shadow-xl"
+                  />
                 </div>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-2">
