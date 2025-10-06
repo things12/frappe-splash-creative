@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import frappuccinoImg from "@/assets/frappuccino-transparent.png";
+import frappuccinoImg from "@/assets/frappuccino.png";
 
 const Hero = () => {
   const mouseX = useMotionValue(0);
@@ -101,7 +101,7 @@ const Hero = () => {
                 rotateY,
                 transformStyle: "preserve-3d",
               }}
-              className="relative w-full max-w-2xl"
+              className="relative w-full max-w-md"
             >
               {/* Glow effect */}
               <motion.div
@@ -120,11 +120,11 @@ const Hero = () => {
               <motion.img
                 src={frappuccinoImg}
                 alt="Delicious Frappuccino"
-                className="relative z-10 w-full h-auto drop-shadow-2xl scale-125"
+                className="relative z-10 w-full h-auto drop-shadow-2xl"
                 style={{
                   transform: "translateZ(50px)",
                 }}
-                whileHover={{ scale: 1.35 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               />
 
