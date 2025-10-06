@@ -33,10 +33,42 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl" />
+      {/* Enhanced background decoration with multiple layers */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
+        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-accent/15 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-primary/5 rounded-full blur-[80px]" />
+      </div>
+      
+      {/* Animated particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ 
+            y: [0, -30, 0],
+            x: [0, 20, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/30 rounded-full"
+        />
+        <motion.div
+          animate={{ 
+            y: [0, 40, 0],
+            x: [0, -15, 0],
+            scale: [1, 0.8, 1],
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/3 right-1/3 w-3 h-3 bg-accent/20 rounded-full"
+        />
+        <motion.div
+          animate={{ 
+            y: [0, -25, 0],
+            x: [0, -20, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-primary/25 rounded-full"
+        />
       </div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
@@ -52,39 +84,57 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="inline-block px-4 py-2 bg-primary/10 rounded-full"
+              className="inline-block px-6 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20"
             >
-              <span className="text-primary font-semibold">New This Season</span>
+              <span className="text-primary font-semibold text-sm tracking-wide">✨ NEW THIS SEASON</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-tight">
+            <h1 className="text-6xl md:text-8xl font-bold text-foreground leading-[1.1] tracking-tight">
               Sip Into
-              <span className="block text-primary">Something Fresh</span>
+              <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Something Fresh
+              </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-lg">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed">
               Experience the perfect blend of rich coffee and creamy indulgence. 
               Our signature frappuccinos are crafted to perfection, just for you.
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="text-lg px-8">
-                Order Now
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                Learn More
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" className="text-lg px-10 py-6 shadow-lg hover:shadow-xl">
+                  Order Now
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" variant="outline" className="text-lg px-10 py-6 border-2">
+                  Learn More
+                </Button>
+              </motion.div>
             </div>
 
-            <div className="flex gap-8 pt-8">
-              <div>
-                <div className="text-3xl font-bold text-primary">50M+</div>
-                <div className="text-sm text-muted-foreground">Happy Customers</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary">4.9★</div>
-                <div className="text-sm text-muted-foreground">Average Rating</div>
-              </div>
+            <div className="flex gap-12 pt-8">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  50M+
+                </div>
+                <div className="text-sm md:text-base text-muted-foreground font-medium">Happy Customers</div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              >
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  4.9★
+                </div>
+                <div className="text-sm md:text-base text-muted-foreground font-medium">Average Rating</div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -103,41 +153,63 @@ const Hero = () => {
               }}
               className="relative w-full max-w-2xl"
             >
-              {/* Glow effect */}
+              {/* Multi-layered glow effect */}
               <motion.div
                 animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3],
+                  scale: [1, 1.3, 1],
+                  opacity: [0.4, 0.6, 0.4],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 rounded-full blur-[80px]"
+              />
+              <motion.div
+                animate={{
+                  scale: [1.2, 1, 1.2],
+                  opacity: [0.2, 0.4, 0.2],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
+                  delay: 0.5,
                 }}
-                className="absolute inset-0 bg-primary/20 rounded-full blur-3xl"
+                className="absolute inset-0 bg-primary/20 rounded-full blur-[100px]"
               />
 
               <motion.img
                 src={frappuccinoImg}
                 alt="Delicious Frappuccino"
-                className="relative z-10 w-full h-auto drop-shadow-2xl scale-125"
+                className="relative z-10 w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] scale-125"
                 style={{
                   transform: "translateZ(50px)",
+                  filter: "drop-shadow(0 0 30px rgba(0, 106, 78, 0.3))",
                 }}
                 whileHover={{ scale: 1.35 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               />
 
-              {/* Floating elements */}
+              {/* Enhanced floating elements */}
               <motion.div
-                animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-10 -right-10 w-24 h-24 bg-accent/20 rounded-full blur-xl"
+                animate={{ y: [0, -30, 0], rotate: [0, 10, 0], x: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br from-accent/30 to-accent/10 rounded-full blur-2xl"
               />
               <motion.div
-                animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/20 rounded-full blur-xl"
+                animate={{ y: [0, 30, 0], rotate: [0, -10, 0], x: [0, -10, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-16 -left-16 w-40 h-40 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full blur-2xl"
+              />
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute top-1/4 -right-20 w-20 h-20 bg-accent/10 rounded-full blur-xl"
               />
             </motion.div>
           </motion.div>
